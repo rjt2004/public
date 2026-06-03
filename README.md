@@ -1,14 +1,4 @@
-﻿# Tone Blog
-
-这是 `toneblog.top` 的 Hexo 博客源码仓库。现在只使用一个 GitHub 分支：`main`。
-
-`main` 同时保存：
-
-- Hexo 源码
-- 主题与配置
-- 文章与图片
-- 生成后的 `public` 静态网页
-- 本地预览与部署脚本
+﻿这是 Hexo 博客源码仓库，文件结构如下：
 
 ## 文件结构
 
@@ -85,7 +75,7 @@ D:\myblog\source\_data\keep.yml
 
 `source\_data\keep.yml` 主要管 Keep 主题，例如菜单、社交入口、首页、搜索、评论、页脚等。
 
-## 部署到 toneblog.top
+## 部署
 
 确认本地预览没问题后，运行：
 
@@ -121,31 +111,3 @@ powershell -ExecutionPolicy Bypass -File D:\myblog\deploy.ps1 -Message "new post
 ```powershell
 powershell -ExecutionPolicy Bypass -File D:\myblog\deploy.ps1 -SkipServer
 ```
-
-## 当前部署结构
-
-```text
-本地工作目录: D:\myblog
-GitHub 仓库: https://github.com/rjt2004/public
-GitHub 分支: main
-线上域名: http://www.toneblog.top
-服务器别名: myserver
-Nginx 容器: mynginx
-服务器静态目录: /home/rjt/public
-```
-
-服务器不再通过 Git 拉取网页文件。部署脚本会直接上传本地生成的 `public` 静态网页，因此只要本地脚本执行成功，线上站点就会更新。
-
-## 敏感信息说明
-
-当前仓库没有保存 GitHub Token、SSH 私钥、服务器密码、LeanCloud appid/appkey 或其他可用密钥。
-
-仓库中包含以下公开信息：
-
-- 邮箱地址
-- GitHub/Bilibili/微博等社交链接
-- 微信和 QQ 二维码图片
-- 服务器别名 `myserver`
-- Nginx 容器名和部署路径
-
-这些不是登录密钥，但邮箱和二维码会作为社交入口公开展示。如果以后不想公开，可以从 `source\_data\keep.yml` 和 `source\images` 中删除或替换。
