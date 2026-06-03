@@ -22,10 +22,12 @@ function Invoke-Native($File, [string[]]$Arguments) {
 }
 
 Invoke-Step "Prepare generated output" {
-  if (Test-Path -LiteralPath (Join-Path $Public ".git")) {
-    Invoke-Native git @("-C", $Public, "reset", "--hard")
-    Invoke-Native git @("-C", $Public, "clean", "-fd")
+  if (-not (Test-Path -LiteralPath (Join-Path $Public ".git"))) {
+    throw "Public directory must keep its own .git repository: $Public"
   }
+  Invoke-Native git @("-C", $Public, "reset", "--hard")
+  Invoke-Native git @("-C", $Public, "clean", "-fd")
+  Get-ChildItem -Force -LiteralPath $Public | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
   $db = Join-Path $Root "db.json"
   if (Test-Path -LiteralPath $db) { Remove-Item -Force -LiteralPath $db }
 }
@@ -82,4 +84,5 @@ if (-not $SkipServer) {
 }
 
 Write-Host "`nDone." -ForegroundColor Green
+
 
