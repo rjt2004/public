@@ -1,8 +1,8 @@
 ﻿param(
   [string]$Message = "update blog",
   [string]$Server = "myserver",
-  [switch]$SkipSourcePush,
-  [switch]$SkipServer
+  [switch]$SkipServer,
+  [switch]$ForcePush
 )
 
 $ErrorActionPreference = "Stop"
@@ -22,12 +22,10 @@ function Invoke-Native($File, [string[]]$Arguments) {
 }
 
 Invoke-Step "Prepare generated output" {
-  if (-not (Test-Path -LiteralPath (Join-Path $Public ".git"))) {
-    throw "Public directory must keep its own .git repository: $Public"
+  if (-not (Test-Path -LiteralPath $Public)) {
+    New-Item -ItemType Directory -Path $Public | Out-Null
   }
-  Invoke-Native git @("-C", $Public, "reset", "--hard")
-  Invoke-Native git @("-C", $Public, "clean", "-fd")
-  Get-ChildItem -Force -LiteralPath $Public | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
+  Get-ChildItem -Force -LiteralPath $Public | Remove-Item -Recurse -Force
   $db = Join-Path $Root "db.json"
   if (Test-Path -LiteralPath $db) { Remove-Item -Force -LiteralPath $db }
 }
@@ -37,52 +35,31 @@ Invoke-Step "Generate static site" {
   Invoke-Native hexo @("generate")
 }
 
-Invoke-Step "Commit source repository" {
+Invoke-Step "Commit and push repository" {
   Set-Location -LiteralPath $Root
   Invoke-Native git @("add", "-A")
-  $sourceChanges = git status --porcelain
-  if ($sourceChanges) {
-    Invoke-Native git @("commit", "-m", "$Message (source)")
-  } else {
-    Write-Host "No source changes to commit."
-  }
-  if (-not $SkipSourcePush) {
-    $sourceRemote = git remote
-    if ($sourceRemote -contains "origin") {
-      Invoke-Native git @("push", "-u", "origin", "source")
-    } else {
-      Write-Host "Source repository has no origin remote; skipped source push." -ForegroundColor Yellow
-    }
-  }
-}
-
-Invoke-Step "Commit and push public repository" {
-  Set-Location -LiteralPath $Public
-  Invoke-Native git @("add", "-A")
-  $publicChanges = git status --porcelain
-  if ($publicChanges) {
+  $changes = git status --porcelain
+  if ($changes) {
     Invoke-Native git @("commit", "-m", $Message)
   } else {
-    Write-Host "No public changes to commit."
+    Write-Host "No changes to commit."
   }
-  Invoke-Native git @("push", "origin", "main")
+  if ($ForcePush) {
+    Invoke-Native git @("push", "-u", "--force-with-lease", "origin", "main")
+  } else {
+    Invoke-Native git @("push", "-u", "origin", "main")
+  }
 }
 
 if (-not $SkipServer) {
   Invoke-Step "Deploy server" {
-    ssh $Server "docker exec -u rjt mynginx sh -lc 'cd /home/rjt/public && git pull --ff-only'"
-    if ($LASTEXITCODE -eq 0) { return }
-
-    Write-Host "Git pull on server failed; falling back to archive upload." -ForegroundColor Yellow
     $Archive = Join-Path $env:TEMP "toneblog-public.tar.gz"
     if (Test-Path -LiteralPath $Archive) { Remove-Item -Force -LiteralPath $Archive }
-    Invoke-Native tar @("--exclude=.git", "-czf", $Archive, "-C", $Public, ".")
+    Invoke-Native tar @("-czf", $Archive, "-C", $Public, ".")
     Invoke-Native scp @($Archive, "${Server}:/tmp/toneblog-public.tar.gz")
-    ssh $Server "docker cp /tmp/toneblog-public.tar.gz mynginx:/tmp/toneblog-public.tar.gz && docker exec mynginx sh -lc 'cd /home/rjt/public && find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf -- {} + && tar -xzf /tmp/toneblog-public.tar.gz -C /home/rjt/public && chown -R rjt:rjt /home/rjt/public'"
-    if ($LASTEXITCODE -ne 0) { throw "Server archive deploy failed with exit code $LASTEXITCODE" }
+    ssh $Server "docker cp /tmp/toneblog-public.tar.gz mynginx:/tmp/toneblog-public.tar.gz && docker exec mynginx sh -lc 'cd /home/rjt/public && find . -mindepth 1 -maxdepth 1 -exec rm -rf -- {} + && tar -xzf /tmp/toneblog-public.tar.gz -C /home/rjt/public && chown -R rjt:rjt /home/rjt/public'"
+    if ($LASTEXITCODE -ne 0) { throw "Server deploy failed with exit code $LASTEXITCODE" }
   }
 }
 
 Write-Host "`nDone." -ForegroundColor Green
-
-
