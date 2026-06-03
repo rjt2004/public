@@ -1,5 +1,5 @@
 ﻿param(
-  [string]$Message = "update blog",
+  [string]$Message = "",
   [string]$Server = "myserver",
   [switch]$SkipServer,
   [switch]$ForcePush
@@ -8,6 +8,7 @@
 $ErrorActionPreference = "Stop"
 $Root = $PSScriptRoot
 $Public = Join-Path $Root "public"
+if ([string]::IsNullOrWhiteSpace($Message)) { $Message = 'update blog ' + (Get-Date -Format 'yyyy-MM-dd HH:mm') }
 
 function Invoke-Step($Title, [scriptblock]$Action) {
   Write-Host "`n==> $Title" -ForegroundColor Cyan
@@ -63,3 +64,4 @@ if (-not $SkipServer) {
 }
 
 Write-Host "`nDone." -ForegroundColor Green
+
