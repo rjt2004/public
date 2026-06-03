@@ -1,0 +1,114 @@
+﻿base_info:
+  primary_color: "#5784D9"
+  title: Ton3rr の Blog
+  author: Ton3rr
+  avatar: /images/avatar.svg
+  logo: /images/logo.svg
+  favicon: /images/logo.svg
+
+menu:
+  home: /                         # 首页
+  archives: /archives             # 归档
+  #tags: /tags                   # 标签
+  categories: /categories       # 分类
+  # links: /links                 # 链接
+  # about: /about                 # 关于
+  photos: /photos               # 相册
+  tools: /tools                      # 工具
+
+first_screen:
+  enable: true        # Option values: true | false
+  background_img: /images/bg.svg
+  background_img_dark: /images/bg.svg
+  description: Keep writing and Keep loving.
+  hitokoto: true     # Option values: true | false
+
+social_contact:
+  enable: true      # Option values: true | false
+  links:
+    github:  https://github.com/rjt2004        # GitHub
+    weixin:  img | /images/wechat.jpg        # WeChat
+    qq:   img | /images/qq.jpg           # QQ
+    weibo:  https://weibo.com/u/6213844778         # WeiBo
+    zhihu:           # ZhiHu
+    twitter:         # Twitter
+    x:               # X
+    facebook:        # Facebook
+    email:  22120721rjt@shu.edu.cn         # Email
+    bilibili:  https://space.bilibili.com/62971110
+
+home:
+  announcement:
+  category: true        # Option values: true | false
+  tag: true               # Option values: true | false
+  post_datetime: updated    # Option values: updated | created
+  post_datetime_format: ago # Option values: ago | YYYY-MM-DD HH:mm:ss
+
+post:
+  author_badge:
+    enable: true         # Option values: true | false
+    level_badge: true    # Option values: true | false
+    custom_badge: ["One", "Two", "Three"]
+
+  word_count:
+    wordcount: true    # Word count, one article. Option values: true | false
+    min2read: true    # Time to read, one article. Option values: true | false
+
+  datetime_format: "YYYY-MM-DD HH:mm:ss"  # Datetime format. e.g. "YYYY-MM-DD HH:mm:ss"
+
+  copyright_info: true  # Option values: true | false
+
+  share: true           # Option values: true | false
+
+  reward:
+    enable: false        # Option values: true | false
+    img_link:            # Image link for the payment QR code
+    text:                # Custom reward text, Can be null
+
+
+code_block:
+  tools:
+    enable: true           # Option values: true | false
+    style: default            # Option values: default | mac
+  highlight_theme: default    # Option values: default | obsidian
+
+toc:
+  enable: true     # Option values: true | false
+  number: true      # Option values: true | false
+  expand_all: true  # Option values: true | false
+  init_open: true    # Option values: true | false
+  layout: right      # Option values: left | right
+
+website_count:
+  busuanzi_count:
+    enable: true     # Option values: true | false
+    site_uv: true   # Option values: true | false
+    site_pv: true    # Option values: true | false
+    page_pv: true   # Option values: true | false
+
+local_search:
+  enable: true      # Option values: true | false
+  preload: true    # Preload the search data when the page loads
+
+pjax:
+  enable: true   # Option values: true | false
+
+footer:
+  since: 2020            # The starting year of your website, Can be null
+  word_count: false      # Option values: true | false
+
+  site_deploy:
+    enable: true        # Option values: true | false
+    provider: aliyun     # Option values: github | vercel | netlify | cloudflare | gitee | aliyun | tencent_cloud | upyun
+    url: aliyun.com         # Your deployment provider url, Can be null
+  record:
+   enable: true
+   list:
+     - code: 沪ICP备2024100242号
+       link: https://beian.miit.gov.cn
+
+
+comment:
+  enable: false
+  use:
+

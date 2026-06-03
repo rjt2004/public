@@ -1,0 +1,151 @@
+- category: AI工具
+
+- name: easyChat
+  link: https://next.eqing.tech/#/new-chat
+  description: easyChat
+  image: 
+
+- name: kimi
+  link: https://kimi.moonshot.cn/
+  description: kimi
+  image: 
+
+- name: deepseek
+  link: https://chat.deepseek.com/
+  description: deepseek
+  image: 
+
+- category: SHU
+
+- name: 学习通
+  link: https://imooc.shu.edu.cn/space/index?t=1714992617309
+  description: 学习通入口
+  image: 
+
+- name: 教务管理
+  link: https://cj.shu.edu.cn/StudentPortal/StudentStatus
+  description: 上海大学教务管理系统
+  image: 
+
+- name: 教务处选课
+  link: https://www.xk.shu.edu.cn/
+  description: 上海大学教务处选课系统
+  image: 
+
+- name: 孰知网
+  link: http://www.sz.shu.edu.cn/Index.aspx
+  description: 上海大学孰知网
+  image: 
+
+- name: 上大OJ
+  link: http://acmoj.shu.edu.cn/
+  description: 上海大学在线编程练习系统
+  image: 
+
+- name: SHU排课助手
+  link: https://xk.shuosc.com/
+  description: 上海大学排课助手
+  image: 
+
+- name: 课程录播
+  link: https://vod.cc.shu.edu.cn
+  description: 上海大学课程录播系统
+  image: 
+
+- name: 四六级
+  link: https://cet-bm.neea.edu.cn/Index
+  description: 上海大学四六级考试报名系统
+  image: 
+
+
+- category: CS
+
+- name: Acwing
+  link: https://www.acwing.com/
+  description: 
+  image: 
+
+- name: 力扣
+  link: https://leetcode.cn/
+  description: leetcode
+  image: 
+
+- name: 洛谷
+  link: https://www.luogu.com.cn/
+  description: 
+  image: 
+
+- name: 蓝桥杯
+  link: https://dasai.lanqiao.cn/
+  description: 
+  image: 
+
+- name: 阿里云
+  link: https://account.aliyun.com
+  description: 阿里云服务
+  image: 
+
+- name: 华为云
+  link: https://www.huaweicloud.com/
+  description: 华为云服务
+  image: 
+
+- category: Blog工具
+
+- name: Hexo
+  link: https://hexo.io/zh-cn/
+  description: 快速、简洁且高效的博客框架
+  image: 
+
+- name: Keep
+  link: https://keep-docs.xpoet.cn/
+  description: Hexo主题
+  image: 
+
+- name: ideogram
+  link: https://ideogram.ai/t/explore
+  description: AI绘图
+  image: 
+
+- name: iconfont
+  link: https://www.iconfont.cn/
+  description: 矢量图标库
+  image: 
+
+- name: LeanCloud
+  link: https://console.leancloud.cn
+  description: 评论等应用服务
+  image: 
+
+- category: 其它
+
+- name: carbon
+  link: https://carbon.now.sh
+  description: 代码框
+  image: 
+
+- name: waifu2x
+  link: https://unlimited.waifu2x.net/
+  description: 图像放大
+  image: 
+
+- name: MapLocation
+  link: https://maplocation.sjfkai.com/
+  description: 批量转换地址为经纬度
+  image: 
+
+- name: draw.io
+  link: https://app.diagrams.net/
+  description: 绘图工具
+  image: 
+
+- name: Canva
+  link: https://www.canva.cn/
+  description: ppt、海报等设计
+  image: 
+
+- name: Cstimer
+  link: https://www.cstimer.net/
+  description: 计时器
+  image: 
+
