@@ -26,7 +26,7 @@ D:\myblog
 运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\myblog\preview.ps1
+./ D:\myblog\preview.ps1
 ```
 
 然后打开：
@@ -38,7 +38,7 @@ http://127.0.0.1:4000/
 如果 4000 端口被占用，可以指定端口：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\myblog\preview.ps1 -Port 4010
+./ D:\myblog\preview.ps1 -Port 4010
 ```
 
 ## 发布文章
@@ -80,7 +80,7 @@ D:\myblog\source\_data\keep.yml
 确认本地预览没问题后，运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\myblog\deploy.ps1
+./ D:\myblog\deploy.ps1
 ```
 
 脚本会自动完成：
@@ -103,11 +103,11 @@ update blog 2026-06-03 19:20
 也可以手动指定：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\myblog\deploy.ps1 -Message "new post"
+./ D:\myblog\deploy.ps1 -Message "new post"
 ```
 
 只推 GitHub、不部署服务器：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\myblog\deploy.ps1 -SkipServer
+./ D:\myblog\deploy.ps1 -SkipServer
 ```
