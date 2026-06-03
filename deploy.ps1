@@ -69,8 +69,17 @@ Invoke-Step "Commit and push public repository" {
 if (-not $SkipServer) {
   Invoke-Step "Deploy server" {
     ssh $Server "docker exec -u rjt mynginx sh -lc 'cd /home/rjt/public && git pull --ff-only'"
-    if ($LASTEXITCODE -ne 0) { throw "Server deploy failed with exit code $LASTEXITCODE" }
+    if ($LASTEXITCODE -eq 0) { return }
+
+    Write-Host "Git pull on server failed; falling back to archive upload." -ForegroundColor Yellow
+    $Archive = Join-Path $env:TEMP "toneblog-public.tar.gz"
+    if (Test-Path -LiteralPath $Archive) { Remove-Item -Force -LiteralPath $Archive }
+    Invoke-Native tar @("--exclude=.git", "-czf", $Archive, "-C", $Public, ".")
+    Invoke-Native scp @($Archive, "${Server}:/tmp/toneblog-public.tar.gz")
+    ssh $Server "docker cp /tmp/toneblog-public.tar.gz mynginx:/tmp/toneblog-public.tar.gz && docker exec mynginx sh -lc 'cd /home/rjt/public && find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf -- {} + && tar -xzf /tmp/toneblog-public.tar.gz -C /home/rjt/public && chown -R rjt:rjt /home/rjt/public'"
+    if ($LASTEXITCODE -ne 0) { throw "Server archive deploy failed with exit code $LASTEXITCODE" }
   }
 }
 
 Write-Host "`nDone." -ForegroundColor Green
+
