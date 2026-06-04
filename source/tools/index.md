@@ -1,5 +1,5 @@
----
+﻿---
 title: tools
-date: 
+date:
 template: tools
 ---

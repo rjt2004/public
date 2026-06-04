@@ -1,151 +1,193 @@
-- category: AI工具
+- category: AI
 
-- name: easyChat
-  link: https://next.eqing.tech/#/new-chat
-  description: easyChat
-  image: 
+- name: "easyChat"
+  link: "https://next.eqing.tech/#/new-chat"
+  description: "聚合式 AI 对话工具"
+  image: "/images/tools/easychat.ico"
 
-- name: kimi
-  link: https://kimi.moonshot.cn/
-  description: kimi
-  image: 
+- name: "kimi"
+  link: "https://kimi.moonshot.cn/"
+  description: "长文本阅读与 AI 助手"
+  image: "/images/tools/kimi.ico"
 
-- name: deepseek
-  link: https://chat.deepseek.com/
-  description: deepseek
-  image: 
+- name: "deepseek"
+  link: "https://chat.deepseek.com/"
+  description: "DeepSeek AI 对话与推理"
+  image: "/images/tools/deepseek.png"
 
-- category: SHU
+- name: "ChatGPT"
+  link: "https://chatgpt.com/library"
+  description: "OpenAI 的 AI 对话助手"
+  image: "/images/tools/chatgpt.png"
 
-- name: 学习通
-  link: https://imooc.shu.edu.cn/space/index?t=1714992617309
-  description: 学习通入口
-  image: 
+- name: "豆包"
+  link: "https://www.doubao.com/chat/8812316051389954"
+  description: "字节跳动 AI 对话助手"
+  image: "/images/tools/6lgg5yyf.png"
 
-- name: 教务管理
-  link: https://cj.shu.edu.cn/StudentPortal/StudentStatus
-  description: 上海大学教务管理系统
-  image: 
+- name: "短信"
+  link: "https://5sim.net/zh"
+  description: "在线短信接码平台"
+  image: "/images/tools/55-t5l-h.ico"
 
-- name: 教务处选课
-  link: https://www.xk.shu.edu.cn/
-  description: 上海大学教务处选课系统
-  image: 
-
-- name: 孰知网
-  link: http://www.sz.shu.edu.cn/Index.aspx
-  description: 上海大学孰知网
-  image: 
-
-- name: 上大OJ
-  link: http://acmoj.shu.edu.cn/
-  description: 上海大学在线编程练习系统
-  image: 
-
-- name: SHU排课助手
-  link: https://xk.shuosc.com/
-  description: 上海大学排课助手
-  image: 
-
-- name: 课程录播
-  link: https://vod.cc.shu.edu.cn
-  description: 上海大学课程录播系统
-  image: 
-
-- name: 四六级
-  link: https://cet-bm.neea.edu.cn/Index
-  description: 上海大学四六级考试报名系统
-  image: 
+- name: "IKunCode"
+  link: "https://api.ikuncode.cc/console"
+  description: "接口与在线工具控制台"
+  image: "/images/tools/ikuncode.jpeg"
 
 
 - category: CS
 
-- name: Acwing
-  link: https://www.acwing.com/
-  description: 
-  image: 
+- name: "Acwing"
+  link: "https://www.acwing.com/"
+  description: "算法学习与在线题库"
+  image: "/images/tools/acwing.png"
 
-- name: 力扣
-  link: https://leetcode.cn/
-  description: leetcode
-  image: 
+- name: "力扣"
+  link: "https://leetcode.cn/"
+  description: "算法刷题与面试题库"
+  image: "/images/tools/5yqb5omj.png"
 
-- name: 洛谷
-  link: https://www.luogu.com.cn/
-  description: 
-  image: 
+- name: "洛谷"
+  link: "https://www.luogu.com.cn/"
+  description: "编程竞赛与算法题库"
+  image: "/images/tools/5rsb6lc3.png"
 
-- name: 蓝桥杯
-  link: https://dasai.lanqiao.cn/
-  description: 
-  image: 
+- name: "代码随想录"
+  link: "https://programmercarl.com/"
+  description: "算法学习路线与题解"
+  image: "/images/tools/5luj56cb6zqp5ooz5b2v.png"
 
-- name: 阿里云
-  link: https://account.aliyun.com
-  description: 阿里云服务
-  image: 
+- name: "阿里云"
+  link: "https://account.aliyun.com"
+  description: "云服务器与云产品控制台"
+  image: "/images/tools/6zi_6yem5lqr.ico"
 
-- name: 华为云
-  link: https://www.huaweicloud.com/
-  description: 华为云服务
-  image: 
+- name: "华为云"
+  link: "https://www.huaweicloud.com/"
+  description: "云服务器与云服务平台"
+  image: "/images/tools/5y2o5li65lqr.png"
 
-- category: Blog工具
+- name: "腾讯云"
+  link: "https://cloud.tencent.com/"
+  description: "云服务器与云服务平台"
+  image: "/images/tools/6iw-6k6v5lqr.ico"
 
-- name: Hexo
-  link: https://hexo.io/zh-cn/
-  description: 快速、简洁且高效的博客框架
-  image: 
+- name: "Kaggle"
+  link: "https://www.kaggle.com/"
+  description: "数据竞赛与数据集平台"
+  image: "/images/tools/kaggle.png"
 
-- name: Keep
-  link: https://keep-docs.xpoet.cn/
-  description: Hexo主题
-  image: 
+- name: "Github"
+  link: "https://github.com/rjt2004"
+  description: "代码托管与项目主页"
+  image: "/images/tools/github.png"
 
-- name: ideogram
-  link: https://ideogram.ai/t/explore
-  description: AI绘图
-  image: 
+- name: "acGit"
+  link: "https://git.acwing.com/"
+  description: "AcWing 代码托管服务"
+  image: "/images/tools/acgit.png"
 
-- name: iconfont
-  link: https://www.iconfont.cn/
-  description: 矢量图标库
-  image: 
+- name: "Gitee"
+  link: "https://gitee.com/"
+  description: "国内代码托管平台"
+  image: "/images/tools/gitee.ico"
 
-- name: LeanCloud
-  link: https://console.leancloud.cn
-  description: 评论等应用服务
-  image: 
+- name: "Linuxdo"
+  link: "https://linux.do/"
+  description: "技术交流与社区论坛"
+  image: "/images/tools/linuxdo.png"
 
-- category: 其它
 
-- name: carbon
-  link: https://carbon.now.sh
-  description: 代码框
-  image: 
+- category: 工具
 
-- name: waifu2x
-  link: https://unlimited.waifu2x.net/
-  description: 图像放大
-  image: 
+- name: "Graphviz Online"
+  link: "https://dreampuf.github.io/GraphvizOnline"
+  description: "在线绘制 Graphviz 图"
+  image: "/images/tools/graphviz-online.svg"
 
-- name: MapLocation
-  link: https://maplocation.sjfkai.com/
-  description: 批量转换地址为经纬度
-  image: 
+- name: "Graph Editor"
+  link: "https://csacademy.com/app/graph_editor"
+  description: "在线编辑图结构"
+  image: "/images/tools/graph-editor.png"
 
-- name: draw.io
-  link: https://app.diagrams.net/
-  description: 绘图工具
-  image: 
+- name: "皎月连一键内网穿透"
+  link: "http://localhost:33272/"
+  description: "本地内网穿透控制台"
+  image: "/images/tools/55qo5pyi6l-e5lia6zsu5yaf.svg"
 
-- name: Canva
-  link: https://www.canva.cn/
-  description: ppt、海报等设计
-  image: 
+- name: "Carbon"
+  link: "https://carbon.now.sh"
+  description: "生成代码截图"
+  image: "/images/tools/carbon.ico"
 
-- name: Cstimer
-  link: https://www.cstimer.net/
-  description: 计时器
-  image: 
+- name: "高亮"
+  link: "https://highlightcode.com/"
+  description: "代码高亮与格式化"
+  image: "/images/tools/6auy5lqu.ico"
 
+- name: "PDF"
+  link: "https://www.ilovepdf.com/zh-cn"
+  description: "PDF 合并、压缩与转换"
+  image: "/images/tools/pdf.png"
+
+- name: "Canva"
+  link: "https://www.canva.cn/"
+  description: "在线设计海报和演示文稿"
+  image: "/images/tools/canva.ico"
+
+- name: "draw"
+  link: "https://app.diagrams.net/"
+  description: "在线流程图与架构图工具"
+  image: "/images/tools/draw.ico"
+
+
+- category: 科研
+
+- name: "Overleaf"
+  link: "https://www.overleaf.com/project"
+  description: "在线 LaTeX 写作协作"
+  image: "/images/tools/overleaf.png"
+
+- name: "LaTeX"
+  link: "https://en.wikibooks.org/wiki/LaTeX"
+  description: "LaTeX 学习与参考文档"
+  image: "/images/tools/latex.ico"
+
+- name: "dblp"
+  link: "https://dblp.org/"
+  description: "计算机论文与作者索引"
+  image: "/images/tools/dblp.png"
+
+- name: "知网"
+  link: "https://www.cnki.net/"
+  description: "中文学术文献检索"
+  image: "/images/tools/55-l572r.ico"
+
+
+- category: 博客
+
+- name: "Hexo"
+  link: "https://hexo.io/zh-cn/"
+  description: "静态博客生成框架"
+  image: "/images/tools/hexo.png"
+
+- name: "Keep"
+  link: "https://keep-docs.xpoet.cn/"
+  description: "Hexo Keep 主题文档"
+  image: "/images/tools/keep.svg"
+
+- name: "ideogram"
+  link: "https://ideogram.ai/t/explore"
+  description: "AI 图片生成工具"
+  image: "/images/tools/ideogram.png"
+
+- name: "iconfont"
+  link: "https://www.iconfont.cn/"
+  description: "阿里巴巴矢量图标库"
+  image: "/images/tools/iconfont.svg"
+
+- name: "LeanCloud"
+  link: "https://console.leancloud.cn"
+  description: "应用后端与数据服务"
+  image: "/images/tools/leancloud.ico"

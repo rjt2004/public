@@ -1,20 +1,18 @@
 ﻿base_info:
   primary_color: "#5784D9"
-  title: Ton3rr の Blog
+  title: Ton3rr
   author: Ton3rr
   avatar: /images/avatar.svg
   logo: /images/logo.svg
   favicon: /images/logo.svg
 
 menu:
-  home: /                         # 首页
-  archives: /archives             # 归档
-  #tags: /tags                   # 标签
-  categories: /categories       # 分类
-  # links: /links                 # 链接
-  # about: /about                 # 关于
-  photos: /photos               # 相册
-  tools: /tools                      # 工具
+  home: / || fa-solid fa-house                         # 首页
+  archives: /archives || fa-solid fa-box-archive       # 归档
+  tags: /tags || fa-solid fa-tags                      # 标签
+  photos: /photos || fa-solid fa-images                # 相册
+  tools: /tools || fa-solid fa-toolbox                 # 工具
+  about: /about || fa-solid fa-user                    # 关于
 
 first_screen:
   enable: true        # Option values: true | false
@@ -111,4 +109,7 @@ footer:
 comment:
   enable: false
   use:
+
+
+
 
