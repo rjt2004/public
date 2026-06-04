@@ -27,25 +27,25 @@ social_contact:
     github:  https://github.com/rjt2004        # GitHub
     weixin:  img | /images/wechat.jpg        # WeChat
     qq:   img | /images/qq.jpg           # QQ
-    weibo:  https://weibo.com/u/6213844778         # WeiBo
+    weibo:   # WeiBo
     zhihu:           # ZhiHu
     twitter:         # Twitter
     x:               # X
     facebook:        # Facebook
-    email:  22120721rjt@shu.edu.cn         # Email
+    email:  1610773590@qq.com         # Email
     bilibili:  https://space.bilibili.com/62971110
 
 home:
   announcement:
-  category: true        # Option values: true | false
+  category: false        # Option values: true | false
   tag: true               # Option values: true | false
   post_datetime: updated    # Option values: updated | created
   post_datetime_format: ago # Option values: ago | YYYY-MM-DD HH:mm:ss
 
 post:
   author_badge:
-    enable: true         # Option values: true | false
-    level_badge: true    # Option values: true | false
+    enable: false         # Option values: true | false
+    level_badge: false    # Option values: true | false
     custom_badge: ["One", "Two", "Three"]
 
   word_count:
@@ -54,9 +54,9 @@ post:
 
   datetime_format: "YYYY-MM-DD HH:mm:ss"  # Datetime format. e.g. "YYYY-MM-DD HH:mm:ss"
 
-  copyright_info: true  # Option values: true | false
+  copyright_info: false  # Option values: true | false
 
-  share: true           # Option values: true | false
+  share: false          # Option values: true | false
 
   reward:
     enable: false        # Option values: true | false
@@ -72,7 +72,7 @@ code_block:
 
 toc:
   enable: true     # Option values: true | false
-  number: true      # Option values: true | false
+  number: false      # Option values: true | false
   expand_all: true  # Option values: true | false
   init_open: true    # Option values: true | false
   layout: right      # Option values: left | right
@@ -92,7 +92,7 @@ pjax:
   enable: true   # Option values: true | false
 
 footer:
-  since: 2020            # The starting year of your website, Can be null
+  since: 2024            # The starting year of your website, Can be null
   word_count: false      # Option values: true | false
 
   site_deploy:
@@ -110,6 +110,8 @@ comment:
   enable: false
   use:
 
+lazyload:
+  enable: true  # Option values: true | false
 
 
 

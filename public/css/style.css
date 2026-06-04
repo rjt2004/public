@@ -4130,7 +4130,6 @@ figure.highlight .shrink-line:hover::before {
   color: var(--text-color-3);
   text-align: justify;
   word-wrap: break-word;
-  border-bottom: 2px dashed var(--border-color);
 }
 @media (max-width: 800px) {
   .post-page-container .post-content-container .post-content-bottom .post-content {
