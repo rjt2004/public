@@ -56,7 +56,7 @@ post:
 
   copyright_info: false  # Option values: true | false
 
-  share: false          # Option values: true | false
+  share: true         # Option values: true | false
 
   reward:
     enable: false        # Option values: true | false
@@ -107,11 +107,20 @@ footer:
 
 
 comment:
-  enable: false
-  use:
+  enable: true
+  use: giscus
+
+  giscus:
+    repo: rjt2004/public
+    repo_id: R_kgDOM__o0Q
+    category: Announcements
+    category_id: DIC_kwDOM__o0c4C-z_p
+    reactions_enabled: true
 
 lazyload:
   enable: true  # Option values: true | false
+
+
 
 
 
