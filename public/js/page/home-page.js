@@ -296,117 +296,11 @@ function homePageHandler() {
     }
   }
 
-  const initFirstScreenBoundaryScroll = () => {
-    const firstScreen = document.querySelector('.first-screen-container')
-    const homeContent = document.querySelector('.home-content-container')
-    if (!firstScreen || !homeContent || fsc?.enable !== true || window.location.pathname.includes('/page/')) return
-
-    if (window.__keepFirstScreenBoundaryCleanup) {
-      window.__keepFirstScreenBoundaryCleanup()
-    }
-
-    let isAutoScrolling = false
-    let wheelUnlockedAt = 0
-    let settleTimer = 0
-    const scrollTo = (top) => {
-      isAutoScrolling = true
-      wheelUnlockedAt = Date.now() + 620
-      window.clearTimeout(settleTimer)
-      window.scrollTo({ top, behavior: 'smooth' })
-      setTimeout(() => {
-        isAutoScrolling = false
-      }, 640)
-    }
-
-    const getHomeTop = () => Math.round(window.scrollY + homeContent.getBoundingClientRect().top)
-    const getFirstScreenHeight = () => Math.round(firstScreen.getBoundingClientRect().height)
-    const inBoundaryArea = () => window.scrollY < getFirstScreenHeight() + 80
-    const settleBoundary = () => {
-      if (Date.now() < wheelUnlockedAt || isAutoScrolling) return
-
-      const homeTop = getHomeTop()
-      const scrollTop = window.scrollY
-      if (scrollTop <= 8 || scrollTop >= homeTop - 8) return
-
-      scrollTo(scrollTop < homeTop / 2 ? 0 : homeTop)
-    }
-
-    const scheduleSettleBoundary = () => {
-      window.clearTimeout(settleTimer)
-      settleTimer = window.setTimeout(settleBoundary, 140)
-    }
-
-    const handleWheel = (event) => {
-      if (Date.now() < wheelUnlockedAt || isAutoScrolling) {
-        event.preventDefault()
-        return
-      }
-
-      const homeTop = getHomeTop()
-      const scrollTop = window.scrollY
-
-      if (event.deltaY > 0 && scrollTop < homeTop - 16) {
-        event.preventDefault()
-        scrollTo(homeTop)
-      } else if (event.deltaY < 0 && inBoundaryArea() && scrollTop <= homeTop + 16) {
-        event.preventDefault()
-        scrollTo(0)
-      }
-    }
-
-    let touchStartY = 0
-    const handleTouchStart = (event) => {
-      touchStartY = event.touches[0]?.clientY || 0
-      window.clearTimeout(settleTimer)
-    }
-
-    const handleTouchMove = (event) => {
-      if (Date.now() < wheelUnlockedAt || isAutoScrolling) {
-        event.preventDefault()
-        return
-      }
-
-      const touchY = event.touches[0]?.clientY || 0
-      const deltaY = touchStartY - touchY
-      if (Math.abs(deltaY) < 18) return
-
-      const homeTop = getHomeTop()
-      const scrollTop = window.scrollY
-
-      if (deltaY > 0 && scrollTop < homeTop - 16) {
-        event.preventDefault()
-        scrollTo(homeTop)
-      } else if (deltaY < 0 && inBoundaryArea() && scrollTop <= homeTop + 16) {
-        event.preventDefault()
-        scrollTo(0)
-      }
-    }
-
-    window.addEventListener('wheel', handleWheel, { passive: false })
-    window.addEventListener('scroll', scheduleSettleBoundary, { passive: true })
-    window.addEventListener('touchstart', handleTouchStart, { passive: true })
-    window.addEventListener('touchmove', handleTouchMove, { passive: false })
-    window.addEventListener('touchend', scheduleSettleBoundary, { passive: true })
-    window.addEventListener('touchcancel', scheduleSettleBoundary, { passive: true })
-
-    window.__keepFirstScreenBoundaryCleanup = () => {
-      window.clearTimeout(settleTimer)
-      window.removeEventListener('wheel', handleWheel)
-      window.removeEventListener('scroll', scheduleSettleBoundary)
-      window.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('touchmove', handleTouchMove)
-      window.removeEventListener('touchend', scheduleSettleBoundary)
-      window.removeEventListener('touchcancel', scheduleSettleBoundary)
-      window.__keepFirstScreenBoundaryCleanup = null
-    }
-  }
-
   resetHomePostUpdateDate()
   setHowLongAgoInHome()
   closeWebsiteAnnouncement()
   initFirstScreenPlayground()
   initTypewriter()
-  initFirstScreenBoundaryScroll()
 }
 
 if (KEEP.theme_config?.pjax?.enable === true && KEEP.utils) {

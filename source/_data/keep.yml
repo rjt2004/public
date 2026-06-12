@@ -3,8 +3,8 @@
   title: Ton3rr
   author: Ton3rr
   avatar: /images/avatar.svg
-  logo: /images/logo.svg
-  favicon: /images/logo.svg
+  logo: /images/tone-logo.svg
+  favicon: /images/tone-logo.svg
 
 menu:
   home: / || fa-solid fa-house                         # 首页
