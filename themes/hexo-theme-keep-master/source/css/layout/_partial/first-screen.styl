@@ -1,34 +1,29 @@
-if (hexo-config('first_screen')) {
-  $temp-fs-bg-img-light = hexo-config('first_screen.background_img')
-  $temp-fs-bg-img-dark = hexo-config('first_screen.background_img_dark')
-}
-else {
-  $temp-fs-bg-img-light = ''
-  $temp-fs-bg-img-dark = ''
-}
-
-$fs-bg-img-light = $temp-fs-bg-img-light ? $temp-fs-bg-img-light : '/images/bg.svg'
-$fs-bg-img-dark = $temp-fs-bg-img-dark ? $temp-fs-bg-img-dark : $fs-bg-img-light
-
-$root = hexo-config('root')
-
 .first-screen-container {
+  position relative
+  background var(--background-color-1)
   width 100%
   height 100vh
   overflow hidden
-  background-image url($root + $fs-bg-img-light)
-  background-position-x center
-  background-position-y center
-  background-size cover
-  background-repeat-x no-repeat
-  background-repeat-y no-repeat
-
 
   .dark-mode & {
-    background-image url($root + $fs-bg-img-dark)
+  }
+
+  .first-screen-playground {
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    z-index 0
+    width 100%
+    height 100%
+    opacity 0.72
+    pointer-events none
   }
 
   .first-screen-content {
+    position relative
+    z-index 1
     display flex
     flex-direction column
     align-items center
@@ -60,13 +55,12 @@ $root = hexo-config('root')
         color var(--first-screen-font-color-dark)
 
         .desc-item {
-          .desc
+          .desc,
           .cursor {
             color var(--first-screen-font-color-dark)
           }
         }
       }
-
 
       .desc-item {
         .desc {
@@ -79,12 +73,10 @@ $root = hexo-config('root')
         }
       }
 
-
       +keep-tablet() {
         font-size calc(var(--first-screen-font-size) * 0.9)
       }
     }
-
 
     .bottom-placeholder {
       width 100%
@@ -104,7 +96,6 @@ $root = hexo-config('root')
             font-size var(--first-screen-icon-size)
           }
 
-
           svg {
             width var(--first-screen-icon-size)
             height var(--first-screen-icon-size)
@@ -113,7 +104,6 @@ $root = hexo-config('root')
               fill var(--first-screen-icon-color-light)
             }
           }
-
 
           .dark-mode & {
             i {
@@ -127,7 +117,6 @@ $root = hexo-config('root')
             }
           }
 
-
           +keep-tablet() {
             i {
               font-size calc(var(--first-screen-icon-size) * 0.9)
@@ -138,7 +127,6 @@ $root = hexo-config('root')
               height calc(var(--first-screen-icon-size) * 0.9)
             }
           }
-
 
           a {
             display flex !important
