@@ -1,4 +1,4 @@
-base_info:
+﻿base_info:
   primary_color: "#5784D9"
   title: Ton3rr
   author: Ton3rr
@@ -118,3 +118,4 @@ comment:
 
 lazyload:
   enable: true  # Option values: true | false
+
