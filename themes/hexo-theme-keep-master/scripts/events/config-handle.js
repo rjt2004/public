@@ -1,4 +1,4 @@
-/* global hexo */
+﻿/* global hexo */
 
 'use strict'
 
@@ -54,6 +54,12 @@ hexo.on('generateBefore', function () {
       if (data.tools) {
         hexo.theme.config.source_data.tools = data.tools
       }
+
+      // record wall data
+      if (data.record) {
+        hexo.theme.config.source_data.record = data.record
+      }
     }
   }
 })
+

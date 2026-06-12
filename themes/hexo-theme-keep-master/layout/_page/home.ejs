@@ -14,7 +14,7 @@
 
                 <% if (post?.home_cover) { %>
                     <div class="home-post-item-top border-box"
-                         style="height: <%= post?.home_cover_height ? post?.home_cover_height + 'px' : '10rem' %>"
+                         style="--home-cover-bg: url('<%- url_for(post.home_cover) %>')"
                     >
                         <% if (post.sticky) { %>
                             <div class="post-sticky-box cover">

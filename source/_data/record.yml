@@ -1,0 +1,41 @@
+# Record item example. Copy the block below, remove leading '#', then edit values.
+#
+# - type: photo                    # photo / music / drama
+#   title: "Title"                 # title shown on the card overlay
+#   date: 2026-06-12               # sorted descending by date
+#   cover: /images/record/demo.jpg # put image files in source/images/record/
+#   rating: 8.5                    # optional, 10-point score; mapped to 5 stars
+#   link: https://example.com      # optional external link
+#   text: "Your note or review."   # text shown after clicking the image
+
+ - type: photo                  
+   title: "test"                 
+   date: 2026-06-10               
+   cover: ../images/record/test.png
+   rating:                 
+   link: 
+   text: "It's a test"  
+
+ - type: music              
+   title: "唉 (pt.3)"                 
+   date: 2026-06-11               
+   cover: ../images/record/唉 (pt.3).jpg
+   rating: 9                 
+   link: "https://music.163.com/#/song?id=1492114515&uct2=U2FsdGVkX1/6lXNbfObMGGORnax/2YY6WuCQcWrasJQ="
+   text: "抽刀断水流 无奈水更流😭"  
+
+ - type: drama             
+   title: "努力克服自卑的我们"                 
+   date: 2026-06-12               
+   cover: ../images/record/努力克服自卑的我们.webp
+   rating: 8.5                 
+   link: 
+   text: 
+
+ - type: music              
+   title: "Baby Driver"                 
+   date: 2026-06-12               
+   cover: ../images/record/Baby Driver.jpg
+   rating: 8.5                 
+   link: "https://music.163.com/song?id=3387243296&uct2=U2FsdGVkX1/EDXgwLOporaeLQgEEDsE/uZvGQq5aP4M="
+   text: "好听👍👍👍"  

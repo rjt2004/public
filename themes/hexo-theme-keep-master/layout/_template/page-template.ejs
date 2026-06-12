@@ -2,7 +2,7 @@
 const page_title = page?.title?.toLowerCase()
 const page_template = page?.template?.toLowerCase()
 const use_page_template = page?.use_template !== false
-const { links: links_data, photos: photos_data, tools: tools_data } = theme?.source_data
+const { links: links_data, photos: photos_data, tools: tools_data, record: record_data } = theme?.source_data
 
 let current_page_data = null
 let current_page_template = null
@@ -21,6 +21,11 @@ if (page_template === 'photos' || page_template === 'photo') {
 if (page_template === 'tools' || page_template === 'tool') {
   current_page_data = tools_data
   current_page_template = 'tools-nav'
+  if (current_page_data) { keep_container = '' }
+}
+if (page_template === 'record' || page_template === 'records') {
+  current_page_data = record_data
+  current_page_template = 'record-wall'
   if (current_page_data) { keep_container = '' }
 }
 
@@ -59,7 +64,7 @@ const page_cover_height = page?.page_cover_height ? page?.page_cover_height + 'p
             <div class="page-content border-box keep-markdown-body <%= current_page_data ? 'has-data' : '' %>">
                 <% if (page?.content || current_page_data) { %>
                     <%- page.content %>
-                <% } else { %>
+                <% } else if (page_title) { %>
                     <h1><%= page_title.toUpperCase() %></h1>
                 <% } %>
             </div>

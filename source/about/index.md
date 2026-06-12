@@ -1,7 +1,7 @@
 ﻿---
 title: about
-page_cover: ../images/about.jpg
-page_cover_height: 500
+page_cover: ../images/about.png
+page_cover_height: 310
 date:
 ---
 

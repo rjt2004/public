@@ -1,4 +1,4 @@
-﻿base_info:
+base_info:
   primary_color: "#5784D9"
   title: Ton3rr
   author: Ton3rr
@@ -9,8 +9,7 @@
 menu:
   home: / || fa-solid fa-house                         # 首页
   archives: /archives || fa-solid fa-box-archive       # 归档
-  tags: /tags || fa-solid fa-tags                      # 标签
-  photos: /photos || fa-solid fa-images                # 相册
+  record: /record || fa-solid fa-record-vinyl              # 记录
   tools: /tools || fa-solid fa-toolbox                 # 工具
   about: /about || fa-solid fa-user                    # 关于
 
@@ -119,8 +118,3 @@ comment:
 
 lazyload:
   enable: true  # Option values: true | false
-
-
-
-
-

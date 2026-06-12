@@ -1,0 +1,112 @@
+<%
+const typeMeta = {
+  photo: { label: '图片', icon: 'fa-solid fa-image' },
+  music: { label: '音乐', icon: 'fa-solid fa-record-vinyl' },
+  drama: { label: '剧集', icon: 'fa-solid fa-clapperboard' },
+  tv: { label: '剧集', icon: 'fa-solid fa-clapperboard' }
+}
+const records = (theme.source_data?.record || [])
+  .filter(item => item?.cover)
+  .slice()
+  .sort((a, b) => new Date(b?.date || 0) - new Date(a?.date || 0))
+const formatRecordDate = value => value ? new Date(value).toISOString().slice(0, 10) : ''
+const renderStars = score => {
+  if (!score && score !== 0) return ''
+  const five = Math.max(0, Math.min(5, Math.round((Number(score) / 2) * 2) / 2))
+  let html = ''
+  for (let i = 1; i <= 5; i++) {
+    html += `<i class="${five >= i ? 'fa-solid fa-star' : five >= i - 0.5 ? 'fa-solid fa-star-half-stroke' : 'fa-regular fa-star'}"></i>`
+  }
+  return `<span class="record-stars" aria-label="${five} stars">${html}</span><span class="record-score">${score}/10</span>`
+}
+%>
+
+<style>
+.record-wall-box { width: 100%; max-width: 1040px; margin: 0 auto; }
+.record-wall-box .record-gallery { width: 100%; column-count: 3; column-gap: .8rem; }
+.record-wall-box .record-card { position: relative; display: inline-block; width: 100%; margin: 0 0 .8rem; overflow: hidden; border-radius: .6rem; border: 0; background: var(--background-color-2); cursor: zoom-in; box-shadow: none; break-inside: avoid; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease; }
+.record-wall-box .record-card:hover { transform: translateY(-3px); box-shadow: 0 16px 38px rgba(0,0,0,.14); filter: saturate(1.05); }
+.record-wall-box .record-card img { display: block; width: 100%; height: auto; background: var(--background-color-2); transition: filter .24s ease, transform .24s ease; }
+.record-wall-box .record-card.is-active { cursor: zoom-out; }
+.record-wall-box .record-card.is-active img { filter: blur(8px) brightness(.62) saturate(1.08); transform: scale(1.035); }
+.record-wall-box .record-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 20px; color: #fff; opacity: 0; pointer-events: none; text-shadow: 0 2px 14px rgba(0,0,0,.46); background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.18) 38%, rgba(0,0,0,.74)); transition: opacity .2s ease; }
+.record-wall-box .record-card.is-active .record-overlay { opacity: 1; pointer-events: auto; }
+.record-wall-box .record-type { display: inline-flex; align-items: center; gap: 7px; width: fit-content; padding: 6px 9px; border: 1px solid rgba(255,255,255,.26); border-radius: 999px; color: rgba(255,255,255,.88); background: rgba(0,0,0,.22); font-size: 12px; backdrop-filter: blur(8px); }
+.record-wall-box .record-title { margin: 0; color: #fff; font-size: 20px; line-height: 1.25; letter-spacing: 0; }
+.record-wall-box .record-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: rgba(255,255,255,.86); font-size: 13px; }
+.record-wall-box .record-date { display: inline-flex; align-items: center; gap: 5px; }
+.record-wall-box .record-stars { display: inline-flex; gap: 2px; color: #ffd166; font-size: 14px; letter-spacing: 0; }
+.record-wall-box .record-score { color: rgba(255,255,255,.76); font-size: 12px; }
+.record-wall-box .record-text { display: -webkit-box; margin: 0; overflow: hidden; color: rgba(255,255,255,.92); font-size: 14px; line-height: 1.65; white-space: pre-wrap; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+.record-wall-box .record-link { display: inline-flex; align-items: center; gap: 7px; width: fit-content; margin-top: 2px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.52); border-radius: 7px; color: #102033 !important; background: rgba(255,255,255,.88); font-size: 13px; font-weight: 600; text-shadow: none; text-decoration: none !important; backdrop-filter: blur(10px); }
+.record-wall-box .record-link:hover { color: #000 !important; background: #fff; }
+@media (max-width: 900px) { .record-wall-box { max-width: 760px; } .record-wall-box .record-gallery { column-count: 2; } }
+@media (max-width: 560px) { .record-wall-box { max-width: 100%; } .record-wall-box .record-gallery { column-count: 1; } .record-wall-box .record-overlay { padding: 18px; } .record-wall-box .record-title { font-size: 18px; } .record-wall-box .record-text { -webkit-line-clamp: 4; } }
+</style>
+
+<div class="record-wall-box border-box">
+  <div class="record-gallery">
+    <% records.forEach((item, index) => { const recordType = item?.type || 'photo'; const meta = typeMeta[recordType] || typeMeta.photo; const recordDate = formatRecordDate(item.date); const stars = renderStars(item.rating); %>
+      <article class="record-card" data-record-index="<%= index %>" aria-label="<%= item.title || meta.label %>" role="button" tabindex="0">
+        <img src="<%- url_for(item.cover) %>" alt="<%= item.title || meta.label %>" loading="lazy" onerror="this.style.display='none'">
+        <div class="record-overlay" aria-hidden="true">
+          <span class="record-type"><i class="<%= meta.icon %>"></i><span><%= meta.label %></span></span>
+          <h2 class="record-title"><%= item.title || meta.label %></h2>
+          <div class="record-meta">
+            <% if (recordDate) { %><span class="record-date"><i class="fa-regular fa-calendar"></i><span><%= recordDate %></span></span><% } %>
+            <%- stars %>
+          </div>
+          <p class="record-text"><%= item.text || '暂时还没有写下体验。' %></p>
+          <% if (item.link) { %>
+            <a class="record-link" href="<%- item.link %>" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>打开链接</span></a>
+          <% } %>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</div>
+
+<script data-pjax>
+(() => {
+  window.initRecordWall = () => {
+    const cards = document.querySelectorAll('.record-wall-box .record-card')
+    if (!cards.length) return
+    const closeAll = except => {
+      cards.forEach(card => {
+        if (card !== except) card.classList.remove('is-active')
+      })
+    }
+    cards.forEach(card => {
+      if (card.dataset.recordBound === 'true') return
+      card.dataset.recordBound = 'true'
+      const toggle = () => {
+        const willOpen = !card.classList.contains('is-active')
+        closeAll(card)
+        card.classList.toggle('is-active', willOpen)
+      }
+      card.addEventListener('click', event => {
+        if (event.target.closest('a')) return
+        toggle()
+      })
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          toggle()
+        }
+      })
+    })
+  }
+  window.initRecordWall()
+  if (window.__recordInlinePjaxBound !== true) {
+    window.__recordInlinePjaxBound = true
+    window.addEventListener('DOMContentLoaded', () => window.initRecordWall?.())
+    document.addEventListener('pjax:complete', () => window.initRecordWall?.())
+    document.addEventListener('pjax:success', () => window.initRecordWall?.())
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.record-wall-box .record-card.is-active').forEach(card => card.classList.remove('is-active'))
+      }
+    })
+  }
+})()
+</script>

@@ -1,27 +1,4 @@
-﻿这是 Hexo 博客源码仓库，文件结构如下：
-
-## 文件结构
-
-```text
-D:\myblog
-├─ _config.yml                  # Hexo 主配置
-├─ source                       # 内容源码
-│  ├─ _posts                    # 已发布文章 Markdown
-│  ├─ _drafts                   # 草稿，不会默认发布
-│  ├─ _data\keep.yml            # Keep 主题主要配置
-│  ├─ images                    # 文章和站点图片
-│  ├─ categories                # 分类页
-│  ├─ photos                    # 相册页
-│  └─ tools                     # 工具页
-├─ themes\hexo-theme-keep-master # Keep 主题源码
-├─ public                       # hexo generate 生成的静态网页
-├─ preview.ps1                  # 本地预览脚本
-├─ deploy.ps1                   # 生成、提交、推送、部署脚本
-├─ package.json                 # Hexo 依赖配置
-└─ package-lock.json            # 依赖锁定文件
-```
-
-## 本地预览
+﻿## 本地预览
 
 运行：
 
@@ -82,17 +59,6 @@ D:\myblog\source\_data\keep.yml
 ```powershell
 ./ D:\myblog\deploy.ps1
 ```
-
-脚本会自动完成：
-
-1. 清空旧的 `public` 生成文件
-2. 运行 `hexo generate`
-3. 把源码、配置、文章和新的 `public` 静态文件加入 Git
-4. 如果有变化，自动创建 commit
-5. 推送到 GitHub `main`
-6. 把 `public` 打包上传到服务器
-7. 解压到 Nginx 容器的 `/home/rjt/public`
-8. 更新 `http://www.toneblog.top`
 
 默认提交说明会自动生成，例如：
 

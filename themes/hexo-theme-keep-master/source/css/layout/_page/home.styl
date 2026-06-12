@@ -111,20 +111,49 @@
 
 
       .home-post-item-top {
+        position relative
         width 100%
+        height 200px
         overflow hidden
         background-color var(--background-color-2)
         border-top-left-radius var(--box-border-radius)
         border-top-right-radius var(--box-border-radius)
 
+        &::before {
+          position absolute
+          top -1.2rem
+          right -1.2rem
+          bottom -1.2rem
+          left -1.2rem
+          background-image var(--home-cover-bg)
+          background-position center
+          background-size cover
+          filter blur(18px)
+          opacity 0.35
+          transform scale(1.08)
+          content ''
+        }
+
+        &::after {
+          position absolute
+          top 0
+          right 0
+          bottom 0
+          left 0
+          background rgba(255, 255, 255, 0.2)
+          content ''
+        }
+
         +keep-mobile() {
-          height 8rem !important
+          height 200px !important
         }
 
         .home-cover {
+          position relative
+          z-index 1
           width 100%
           height 100%
-          object-fit cover
+          object-fit contain
           transform-origin center center
           transition-t("transform", "0", "1", "linear")
 
