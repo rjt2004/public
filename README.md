@@ -60,7 +60,7 @@ D:\myblog\scripts\post-asset-html-images.js
 
 ## 更新 Record
 
-Record 页面用于记录图片、音乐、剧集等内容。常用文件：
+Record 页面用于记录图片、音乐、剧集、游戏等。常用文件：
 
 ```text
 D:\myblog\source\_data\record.yml
@@ -76,7 +76,7 @@ D:\myblog\source\images\record\图片名.jpg
 然后在 `D:\myblog\source\_data\record.yml` 里新增一段：
 
 ```yaml
-- type: photo / music / drama
+- type: photo / music / drama / game
   title: "标题"                       
   date: 2026-06-13
   cover: /images/record/图片名.jpg
@@ -105,31 +105,13 @@ http://127.0.0.1:4000/
 ./ D:\myblog\preview.ps1 -Port 4010
 ```
 
-## 部署到 GitHub Pages
+## 部署
 
-当前迁移目标是 GitHub Pages 用户站点：
-
-```text
-https://rjt2004.github.io/
-```
-
-推荐仓库结构：
+当前仓库结构：
 
 ```text
 main 分支：Hexo 源码、主题、文章、配置、脚本
- gh-pages 分支：只保存 public 生成后的静态网站文件
-```
-
-首次迁移前，需要在 GitHub 上创建空仓库：
-
-```text
-rjt2004.github.io
-```
-
-然后确认本地远程地址指向这个仓库：
-
-```powershell
-git remote set-url origin https://github.com/rjt2004/rjt2004.github.io.git
+gh-pages 分支：只保存 public 生成后的静态网站文件
 ```
 
 确认本地预览没问题后，运行：
@@ -159,16 +141,4 @@ update blog 2026-06-03 19:20
 
 ```powershell
 ./ D:\myblog\deploy.ps1 -Message "new post"
-```
-
-如果 GitHub Pages 还没有生效，需要到仓库设置中选择：
-
-```text
-Settings -> Pages -> Build and deployment -> Deploy from a branch -> gh-pages / root
-```
-
-启用后访问：
-
-```text
-https://rjt2004.github.io/
 ```

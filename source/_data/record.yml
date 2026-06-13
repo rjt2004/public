@@ -1,6 +1,6 @@
 # Record item example. Copy the block below, remove leading '#', then edit values.
 #
-# - type: photo                    # photo / music / drama
+# - type: photo                    # photo / music / drama / game
 #   title: "Title"                 # title shown on the card overlay
 #   date: 2026-06-12               # sorted descending by date
 #   cover: /images/record/demo.jpg # put image files in source/images/record/
@@ -39,3 +39,11 @@
    rating: 8.5                 
    link: "https://music.163.com/song?id=3387243296&uct2=U2FsdGVkX1/EDXgwLOporaeLQgEEDsE/uZvGQq5aP4M="
    text: "好听👍👍👍"  
+
+ - type: game              
+   title: "以撒的结合：重生"                 
+   date: 2026-06-13               
+   cover: ../images/record/isaac.jpg
+   rating: 8                 
+   link: 
+   text: "一直在愿望单的肉鸽游戏，玩法、机制、角色都非常多，刚开始没看教程没有mod还是比较难，后面越玩越上头"  
