@@ -15,8 +15,8 @@ menu:
 
 first_screen:
   enable: true        # Option values: true | false
-  background_img:
-  background_img_dark:
+  background_img: /images/bg.svg
+  background_img_dark: /images/bg2.svg
   description: Keep writing and Keep loving.
   hitokoto: true     # Option values: true | false
 

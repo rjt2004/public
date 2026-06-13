@@ -3463,22 +3463,13 @@ figure.highlight .shrink-line:hover::before {
 }
 .first-screen-container {
   position: relative;
-  background: var(--background-color-1);
+  background: var(--background-color-1) url("/images/bg.svg") center center/cover no-repeat;
   width: 100%;
   height: 100vh;
   overflow: hidden;
 }
-.first-screen-container .first-screen-playground {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.72;
-  pointer-events: none;
+.dark-mode .first-screen-container {
+  background: var(--background-color-1) url("/images/bg2.svg") center center/cover no-repeat;
 }
 .first-screen-container .first-screen-content {
   position: relative;
