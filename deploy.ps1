@@ -1,7 +1,7 @@
-﻿param(
+param(
   [string]$Message = "",
-  [string]$Server = "myserver",
-  [switch]$SkipServer,
+  [string]$Remote = "origin",
+  [string]$PagesBranch = "gh-pages",
   [switch]$ForcePush
 )
 
@@ -22,46 +22,73 @@ function Invoke-Native($File, [string[]]$Arguments) {
   }
 }
 
-Invoke-Step "Prepare generated output" {
-  if (-not (Test-Path -LiteralPath $Public)) {
-    New-Item -ItemType Directory -Path $Public | Out-Null
+function Clear-DirectoryContent($Path) {
+  if (-not (Test-Path -LiteralPath $Path)) {
+    New-Item -ItemType Directory -Path $Path | Out-Null
+    return
   }
-  Get-ChildItem -Force -LiteralPath $Public | Remove-Item -Recurse -Force
-  $db = Join-Path $Root "db.json"
-  if (Test-Path -LiteralPath $db) { Remove-Item -Force -LiteralPath $db }
+  Get-ChildItem -Force -LiteralPath $Path | Remove-Item -Recurse -Force
 }
 
-Invoke-Step "Generate static site" {
+Invoke-Step "Clean and generate static site" {
   Set-Location -LiteralPath $Root
+  Invoke-Native hexo @("clean")
   Invoke-Native hexo @("generate")
 }
 
-Invoke-Step "Commit and push repository" {
+Invoke-Step "Commit and push source branch" {
   Set-Location -LiteralPath $Root
   Invoke-Native git @("add", "-A")
   $changes = git status --porcelain
   if ($changes) {
     Invoke-Native git @("commit", "-m", $Message)
   } else {
-    Write-Host "No changes to commit."
+    Write-Host "No source changes to commit."
   }
   if ($ForcePush) {
-    Invoke-Native git @("push", "-u", "--force-with-lease", "origin", "main")
+    Invoke-Native git @("push", "-u", "--force-with-lease", $Remote, "main")
   } else {
-    Invoke-Native git @("push", "-u", "origin", "main")
+    Invoke-Native git @("push", "-u", $Remote, "main")
   }
 }
 
-if (-not $SkipServer) {
-  Invoke-Step "Deploy server" {
-    $Archive = Join-Path $env:TEMP "toneblog-public.tar.gz"
-    if (Test-Path -LiteralPath $Archive) { Remove-Item -Force -LiteralPath $Archive }
-    Invoke-Native tar @("-czf", $Archive, "-C", $Public, ".")
-    Invoke-Native scp @($Archive, "${Server}:/tmp/toneblog-public.tar.gz")
-    ssh $Server "docker cp /tmp/toneblog-public.tar.gz mynginx:/tmp/toneblog-public.tar.gz && docker exec mynginx sh -lc 'cd /home/rjt/public && find . -mindepth 1 -maxdepth 1 -exec rm -rf -- {} + && tar -xzf /tmp/toneblog-public.tar.gz -C /home/rjt/public && chown -R rjt:rjt /home/rjt/public'"
-    if ($LASTEXITCODE -ne 0) { throw "Server deploy failed with exit code $LASTEXITCODE" }
+Invoke-Step "Publish public folder to GitHub Pages branch" {
+  Set-Location -LiteralPath $Root
+  $RemoteUrl = git remote get-url $Remote
+  if ($LASTEXITCODE -ne 0) { throw "Cannot read remote '$Remote'." }
+
+  $DeployDir = Join-Path $env:TEMP "toneblog-gh-pages"
+  if (Test-Path -LiteralPath $DeployDir) {
+    Remove-Item -Recurse -Force -LiteralPath $DeployDir
+  }
+
+  git clone --depth 1 --branch $PagesBranch $RemoteUrl $DeployDir
+  if ($LASTEXITCODE -ne 0) {
+    if (Test-Path -LiteralPath $DeployDir) { Remove-Item -Recurse -Force -LiteralPath $DeployDir }
+    Invoke-Native git @("clone", "--depth", "1", $RemoteUrl, $DeployDir)
+    Set-Location -LiteralPath $DeployDir
+    Invoke-Native git @("checkout", "--orphan", $PagesBranch)
+  } else {
+    Set-Location -LiteralPath $DeployDir
+  }
+
+  Get-ChildItem -Force -LiteralPath $DeployDir | Where-Object { $_.Name -ne ".git" } | Remove-Item -Recurse -Force
+  Copy-Item -Path (Join-Path $Public "*") -Destination $DeployDir -Recurse -Force
+  New-Item -ItemType File -Path (Join-Path $DeployDir ".nojekyll") -Force | Out-Null
+
+  Invoke-Native git @("add", "-A")
+  $pageChanges = git status --porcelain
+  if ($pageChanges) {
+    Invoke-Native git @("commit", "-m", "deploy site")
+  } else {
+    Write-Host "No public changes to publish."
+  }
+
+  if ($ForcePush) {
+    Invoke-Native git @("push", "-u", "--force-with-lease", "origin", $PagesBranch)
+  } else {
+    Invoke-Native git @("push", "-u", "origin", $PagesBranch)
   }
 }
 
-Write-Host "`nDone." -ForegroundColor Green
-
+Write-Host "`nDone. GitHub Pages site: https://rjt2004.github.io/" -ForegroundColor Green

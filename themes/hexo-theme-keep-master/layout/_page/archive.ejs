@@ -1,12 +1,6 @@
 <div class="fade-in-down-animation">
     <div class="archives-container">
         <div class="archives-layout border-box">
-            <div class="archives-main border-box">
-                <div class="archives-section-title"><i class="fa-solid fa-box-archive"></i><span><%= __('archive') %></span></div>
-                <div class="archives-timeline border-box">
-                    <%- partial('_partial/archive-list', { archive_posts: page.posts }) %>
-                </div>
-            </div>
             <aside class="archives-tags border-box">
                 <div class="archives-section-title"><i class="fa-solid fa-tags"></i><span><%= __('tag') %></span></div>
                 <% if (site.tags.length){ %>
@@ -22,6 +16,12 @@
                     <%- partial('_partial/common/empty-content') %>
                 <% } %>
             </aside>
+            <div class="archives-main border-box">
+                <div class="archives-section-title"><i class="fa-solid fa-box-archive"></i><span><%= __('archive') %></span></div>
+                <div class="archives-timeline border-box">
+                    <%- partial('_partial/archive-list', { archive_posts: page.posts }) %>
+                </div>
+            </div>
         </div>
     </div>
     <%- partial('_partial/paginator', { page_info: page }) %>

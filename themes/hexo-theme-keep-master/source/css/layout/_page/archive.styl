@@ -1,11 +1,14 @@
 .archives-container {
-  keep-container(1, 2rem, 2rem)
+  width var(--page-content-max-width)
+  max-width 100%
+  margin 0 auto
+  padding 2rem
+  box-sizing border-box
 
   .archives-layout {
-    display grid
-    grid-template-columns minmax(0, 1fr) 16rem
+    display flex
+    flex-direction column
     gap 2rem
-    align-items start
   }
 
   .archives-section-title {
@@ -25,15 +28,8 @@
 
   .archives-main,
   .archives-tags {
+    keep-container(1, 2rem, 0)
     min-width 0
-  }
-
-  .archives-tags {
-    position sticky
-    top 5rem
-    padding 1.2rem
-    background var(--background-color-2)
-    border-radius var(--box-border-radius)
   }
 
   .tagcloud-content {
@@ -48,24 +44,15 @@
       box-sizing border-box
       padding 0.38rem 0.62rem
       color var(--text-color-3)
+      font-size 1rem !important
       line-height 1.3
-      background var(--background-color-1)
+      background var(--background-color-2)
       border-radius 0.35rem
 
       &:hover {
         color var(--background-color-1)
         background var(--primary-color)
       }
-    }
-  }
-
-  +keep-tablet() {
-    .archives-layout {
-      grid-template-columns 1fr
-    }
-
-    .archives-tags {
-      position static
     }
   }
 
@@ -76,8 +63,9 @@
       gap 1.4rem
     }
 
+    .archives-main,
     .archives-tags {
-      padding 1rem
+      padding 1.4rem
     }
   }
 }

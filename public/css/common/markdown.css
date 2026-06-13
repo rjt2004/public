@@ -42,7 +42,7 @@
 }
 .keep-markdown-body blockquote cite::before,
 .keep-markdown-body > .post blockquote cite::before {
-  content: '— ';
+  content: '鈥?';
 }
 .keep-markdown-body p,
 .keep-markdown-body > .post p {
@@ -364,8 +364,13 @@ keep-tablet()
 .keep-markdown-body > img,
 .keep-markdown-body > .post > img,
 .keep-markdown-body p > img,
-.keep-markdown-body > .post p > img {
+.keep-markdown-body > .post p > img,
+.keep-markdown-body > a > img,
+.keep-markdown-body > .post > a > img,
+.keep-markdown-body p > a > img,
+.keep-markdown-body > .post p > a > img {
   margin: var(--post-img-align);
+  margin: 0 auto;
 }
 .keep-markdown-body > .table-container,
 .keep-markdown-body > .post > .table-container {

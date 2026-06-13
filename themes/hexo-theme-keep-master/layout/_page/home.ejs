@@ -1,4 +1,13 @@
 <div class="home-content-container fade-in-down-animation">
+    <%
+        const resolvePostAsset = (post, asset) => {
+            if (!asset) return asset
+            if (/^(https?:)?\/\//.test(asset) || asset.startsWith('/') || asset.startsWith('../') || asset.startsWith('./')) {
+                return asset
+            }
+            return `${post.path}${asset}`
+        }
+    %>
     <% if (theme?.home?.announcement) { %>
         <div class="website-announcement border-box">
             <i class="icon left fa-solid fa-bullhorn"></i>
@@ -13,15 +22,16 @@
             <li class="home-post-item">
 
                 <% if (post?.home_cover) { %>
+                    <% const home_cover = resolvePostAsset(post, post.home_cover) %>
                     <div class="home-post-item-top border-box"
-                         style="--home-cover-bg: url('<%- url_for(post.home_cover) %>')"
+                         style="--home-cover-bg: url('<%- url_for(home_cover) %>')"
                     >
                         <% if (post.sticky) { %>
                             <div class="post-sticky-box cover">
                                 <i class="fas fa-thumbtack"></i><span class="sticky-name">&nbsp;<%- __('top') %></span>
                             </div>
                         <% } %>
-                        <img class="home-cover" src="<%- url_for(post.home_cover) %>"
+                        <img class="home-cover" src="<%- url_for(home_cover) %>"
                              onerror="this.style.display='none'"
                         >
                     </div>

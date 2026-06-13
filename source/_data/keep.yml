@@ -42,6 +42,8 @@ home:
   post_datetime_format: ago # Option values: ago | YYYY-MM-DD HH:mm:ss
 
 post:
+  img_align: center      # Option values: left | center | right
+
   author_badge:
     enable: false         # Option values: true | false
     level_badge: false    # Option values: true | false
@@ -73,8 +75,8 @@ toc:
   enable: true     # Option values: true | false
   number: false      # Option values: true | false
   expand_all: true  # Option values: true | false
-  init_open: true    # Option values: true | false
-  layout: right      # Option values: left | right
+  init_open: false    # Option values: true | false
+  layout: left      # Option values: left | right
 
 website_count:
   busuanzi_count:

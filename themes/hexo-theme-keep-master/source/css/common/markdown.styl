@@ -45,7 +45,7 @@ $h6-font-size = 1.2rem
       color var(--text-color-4)
 
       &::before {
-        content '— '
+        content '鈥?'
       }
     }
   }
@@ -353,7 +353,9 @@ $h6-font-size = 1.2rem
 
 
   & > img
-  p > img {
+  p > img
+  & > a > img
+  p > a > img {
     margin var(--post-img-align)
 
     if (hexo-config('post') && hexo-config('post.img_align') == 'left') {
