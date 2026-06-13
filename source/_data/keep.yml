@@ -1,4 +1,4 @@
-﻿base_info:
+base_info:
   primary_color: "#5784D9"
   title: Ton3rr
   author: Ton3rr
@@ -96,10 +96,6 @@ footer:
   since: 2024            # The starting year of your website, Can be null
   word_count: false      # Option values: true | false
 
-  site_deploy:
-    enable: true        # Option values: true | false
-    provider: aliyun     # Option values: github | vercel | netlify | cloudflare | gitee | aliyun | tencent_cloud | upyun
-    url: aliyun.com         # Your deployment provider url, Can be null
   record:
    enable: true
    list:
@@ -112,7 +108,7 @@ comment:
   use: giscus
 
   giscus:
-    repo: rjt2004/public
+    repo: rjt2004/rjt2004.github.io
     repo_id: R_kgDOM__o0Q
     category: Announcements
     category_id: DIC_kwDOM__o0c4C-z_p
