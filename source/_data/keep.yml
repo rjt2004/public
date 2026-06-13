@@ -1,10 +1,10 @@
 base_info:
-  primary_color: "#B86A8E"
+  primary_color: "#0066cc"
   title: Ton3rr
   author: Ton3rr
   avatar: /images/avatar.svg
-  logo: /images/tone-logo.svg
-  favicon: /images/tone-logo.svg
+  logo: /images/logo.svg
+  favicon: /images/logo.svg
 
 menu:
   home: / || fa-solid fa-house                         # 首页
@@ -15,8 +15,8 @@ menu:
 
 first_screen:
   enable: true        # Option values: true | false
-  background_img: /images/about-bg.jpg
-  background_img_dark: /images/about-bg.jpg
+  background_img: /images/bg.svg
+  background_img_dark: /images/bg.svg
   description: Keep writing and Keep loving.
   hitokoto: true     # Option values: true | false
 
@@ -113,4 +113,3 @@ comment:
 
 lazyload:
   enable: true  # Option values: true | false
-
