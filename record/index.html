@@ -268,12 +268,12 @@
 <style>
 .record-wall-box { width: 100%; max-width: 1040px; margin: 0 auto; }
 .record-wall-box .record-gallery { width: 100%; column-count: 3; column-gap: .8rem; }
-.record-wall-box .record-card { position: relative; display: inline-block; width: 100%; margin: 0 0 .8rem; overflow: hidden; border-radius: .6rem; border: 0; background: var(--background-color-2); cursor: zoom-in; box-shadow: none; break-inside: avoid; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease; }
+.record-wall-box .record-card { position: relative; display: inline-grid; grid-template-areas: "record-stack"; width: 100%; margin: 0 0 .8rem; overflow: hidden; border-radius: .6rem; border: 0; background: var(--background-color-2); cursor: zoom-in; box-shadow: none; break-inside: avoid; isolation: isolate; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease; }
 .record-wall-box .record-card:hover { transform: translateY(-3px); box-shadow: 0 16px 38px rgba(0,0,0,.14); filter: saturate(1.05); }
-.record-wall-box .record-card img { display: block; width: 100%; height: auto; background: var(--background-color-2); transition: filter .24s ease, transform .24s ease; }
+.record-wall-box .record-card img { position: relative; z-index: 1; grid-area: record-stack; display: block; width: 100%; height: auto; background: var(--background-color-2); transition: filter .24s ease, transform .24s ease; }
 .record-wall-box .record-card.is-active { cursor: zoom-out; }
 .record-wall-box .record-card.is-active img { filter: blur(8px) brightness(.62) saturate(1.08); transform: scale(1.035); }
-.record-wall-box .record-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 20px; color: #fff; opacity: 0; pointer-events: none; text-shadow: 0 2px 14px rgba(0,0,0,.46); background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.18) 38%, rgba(0,0,0,.74)); transition: opacity .2s ease; }
+.record-wall-box .record-overlay { position: relative; z-index: 2; grid-area: record-stack; align-self: stretch; justify-self: stretch; box-sizing: border-box; width: 100%; min-width: 0; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 20px; color: #fff; opacity: 0; pointer-events: none; text-shadow: 0 2px 14px rgba(0,0,0,.46); background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.18) 38%, rgba(0,0,0,.74)); transition: opacity .2s ease; }
 .record-wall-box .record-card.is-active .record-overlay { opacity: 1; pointer-events: auto; }
 .record-wall-box .record-type { display: inline-flex; align-items: center; gap: 7px; width: fit-content; padding: 6px 9px; border: 1px solid rgba(255,255,255,.26); border-radius: 999px; color: rgba(255,255,255,.88); background: rgba(0,0,0,.22); font-size: 12px; backdrop-filter: blur(8px); }
 .record-wall-box .record-title { margin: 0; color: #fff; font-size: 20px; line-height: 1.25; letter-spacing: 0; }
@@ -412,6 +412,9 @@
   }
 })()
 </script>
+
+
+
 
             
 
