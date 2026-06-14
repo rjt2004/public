@@ -1,27 +1,30 @@
 <div class="fade-in-down-animation">
-    <div class="archives-container">
-        <div class="archives-layout border-box">
-            <aside class="archives-tags border-box">
-                <div class="archives-section-title"><i class="fa-solid fa-tags"></i><span><%= __('tag') %></span></div>
-                <% if (site.tags.length){ %>
-                    <div class="tagcloud-content">
-                        <%- tagcloud({
-                            min_font: 1,
-                            max_font: 1,
-                            unit: 'rem',
-                            amount: 100
-                        }) %>
-                    </div>
-                <% } else { %>
-                    <%- partial('_partial/common/empty-content') %>
-                <% } %>
-            </aside>
-            <div class="archives-main border-box">
-                <div class="archives-section-title"><i class="fa-solid fa-box-archive"></i><span><%= __('archive') %></span></div>
-                <div class="archives-timeline border-box">
+    <div class="blog-container">
+        <div class="blog-layout border-box">
+            <aside class="blog-side border-box">
+                <section class="blog-side-card border-box">
+                    <div class="blog-section-title"><i class="fa-solid fa-tags"></i><span><%= __('tag') %></span></div>
+                    <% if (site.tags.length){ %>
+                        <div class="tagcloud-content">
+                            <%- tagcloud({
+                                min_font: 1,
+                                max_font: 1,
+                                unit: 'rem',
+                                amount: 100
+                            }) %>
+                        </div>
+                    <% } else { %>
+                        <%- partial('_partial/common/empty-content') %>
+                    <% } %>
+                </section>
+                <section class="blog-side-card border-box compact-archive">
+                    <div class="blog-section-title"><i class="fa-solid fa-box-archive"></i><span><%= __('archive') %></span></div>
                     <%- partial('_partial/archive-list', { archive_posts: page.posts }) %>
-                </div>
-            </div>
+                </section>
+            </aside>
+            <section class="blog-main border-box">
+                <%- partial('_page/home') %>
+            </section>
         </div>
     </div>
     <%- partial('_partial/paginator', { page_info: page }) %>

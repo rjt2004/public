@@ -3,6 +3,21 @@
   height: auto;
   background: var(--background-color-1);
 }
+.page-container.home-only {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+.page-container .home-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: $z-index-5;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--header-height);
+}
 .page-container .page-main-content {
   display: flex;
   flex-direction: column;

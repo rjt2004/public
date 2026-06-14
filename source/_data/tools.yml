@@ -191,3 +191,8 @@
   link: "https://console.leancloud.cn"
   description: "应用后端与数据服务"
   image: "/images/tools/leancloud.ico"
+
+- name: "openmoji"
+  link: "https://openmoji.org/"
+  description: "emoji资源下载"
+  image: "/images/tools/openmoji.png"

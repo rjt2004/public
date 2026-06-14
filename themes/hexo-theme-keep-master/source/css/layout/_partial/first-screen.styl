@@ -1,14 +1,14 @@
 .first-screen-container {
   position relative
-  background var(--background-color-1) url(hexo-config('first_screen.background_img')) center center / cover no-repeat
   width 100%
   height 100vh
+  min-height 100vh
   overflow hidden
+  background var(--background-color-1) url(hexo-config('first_screen.background_img')) center center / cover no-repeat
 
   .dark-mode & {
     background var(--background-color-1) url(hexo-config('first_screen.background_img_dark')) center center / cover no-repeat
   }
-
 
   .first-screen-content {
     position relative
@@ -16,111 +16,107 @@
     display flex
     flex-direction column
     align-items center
-    justify-content space-between
+    justify-content center
     width 80%
-    height 90%
-    padding-top calc(var(--header-height) * 0.5)
-
-    +keep-tablet() {
-      padding-top calc(var(--header-height) * 0.5 * 0.9)
-    }
+    height 100%
+    min-height 100vh
+    padding-top 0
 
     +keep-mobile() {
-      padding-top calc(var(--header-height) * 0.5 * 0.8)
+      width 90%
     }
 
-    .description {
-      display var(--first-screen-display)
-      color var(--first-screen-font-color-light)
-      font-weight bold
-      font-size var(--first-screen-font-size)
-      font-family var(--first-screen-font-family)
-      line-height 1.8
-      text-align center
-      transform translateY(var(--first-screen-font-offset))
-      opacity 0
+    .home-profile {
+      display flex
+      flex-direction column
+      align-items center
+      justify-content center
+      transform translateY(-1vh)
+    }
 
-      .dark-mode & {
-        color var(--first-screen-font-color-dark)
-
-        .desc-item {
-          .desc,
-          .cursor {
-            color var(--first-screen-font-color-dark)
-          }
-        }
-      }
-
-      .desc-item {
-        .desc {
-          color var(--first-screen-font-color-light)
-        }
-
-        .cursor {
-          color var(--first-screen-font-color-light)
-          animation blink-caret 0.8s step-end infinite
-        }
-      }
+    .home-avatar {
+      display block
+      width 136px
+      height 136px
+      object-fit cover
+      border-radius 50%
 
       +keep-tablet() {
-        font-size calc(var(--first-screen-font-size) * 0.9)
+        width 124px
+        height 124px
+      }
+
+      +keep-mobile() {
+        width 108px
+        height 108px
       }
     }
 
-    .bottom-placeholder {
-      width 100%
+    .home-weather-status {
+      display inline-flex
+      align-items center
+      gap 0.55rem
+      margin-top 1.05rem
+      color var(--first-screen-font-color-light)
+      font-size 0.95rem
+      line-height 1
+      opacity 0.86
 
-      .sc-icon-list {
+      canvas {
+        width 2rem
+        height 2rem
+      }
+
+    }
+
+    .sc-icon-list {
+      display flex
+      justify-content center
+      align-items center
+      flex-wrap wrap
+      gap 2.1rem
+      margin-top 1.35rem
+
+      .sc-icon-item {
         display flex
+        align-items center
         justify-content center
+        cursor pointer
+        transition transform 0.18s ease
 
-        .sc-icon-item {
-          display flex
-          align-items center
-          margin 0 1rem
-          cursor pointer
+        &:hover {
+          transform translateY(-2px)
+        }
 
+        i {
+          color var(--first-screen-icon-color-light)
+          font-size calc(var(--first-screen-icon-size) * 0.9)
+        }
+
+        svg {
+          width calc(var(--first-screen-icon-size) * 0.9)
+          height calc(var(--first-screen-icon-size) * 0.9)
+
+          path {
+            fill var(--first-screen-icon-color-light)
+          }
+        }
+
+        +keep-mobile() {
           i {
-            color var(--first-screen-icon-color-light)
-            font-size var(--first-screen-icon-size)
+            font-size calc(var(--first-screen-icon-size) * 0.78)
           }
 
           svg {
-            width var(--first-screen-icon-size)
-            height var(--first-screen-icon-size)
-
-            path {
-              fill var(--first-screen-icon-color-light)
-            }
+            width calc(var(--first-screen-icon-size) * 0.78)
+            height calc(var(--first-screen-icon-size) * 0.78)
           }
+        }
 
-          .dark-mode & {
-            i {
-              color var(--first-screen-icon-color-dark)
-            }
-
-            svg {
-              path {
-                fill var(--first-screen-icon-color-dark)
-              }
-            }
-          }
-
-          +keep-tablet() {
-            i {
-              font-size calc(var(--first-screen-icon-size) * 0.9)
-            }
-
-            svg {
-              width calc(var(--first-screen-icon-size) * 0.9)
-              height calc(var(--first-screen-icon-size) * 0.9)
-            }
-          }
-
-          a {
-            display flex !important
-            align-items center !important
-          }
+        a {
+          display flex !important
+          align-items center !important
+          justify-content center !important
         }
       }
     }

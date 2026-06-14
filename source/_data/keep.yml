@@ -8,7 +8,7 @@ base_info:
 
 menu:
   home: / || fa-solid fa-house                         # 首页
-  archives: /archives || fa-solid fa-box-archive       # 归档
+  blog: /blog || fa-solid fa-pen-nib                # 博客
   record: /record || fa-solid fa-record-vinyl              # 记录
   tools: /tools || fa-solid fa-toolbox                 # 工具
   about: /about || fa-solid fa-user                    # 关于
@@ -18,7 +18,7 @@ first_screen:
   background_img: /images/bg.svg
   background_img_dark: /images/bg.svg
   description: Keep writing and Keep loving.
-  hitokoto: true     # Option values: true | false
+  hitokoto: false     # Option values: true | false
 
 social_contact:
   enable: true      # Option values: true | false

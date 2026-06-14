@@ -4,6 +4,22 @@ $post-tools-offset = calc((100vw - var(--page-content-max-width) / 2) - 5rem)
   width 100%
   height auto
   background var(--background-color-1)
+  &.home-only {
+    min-height 100vh
+    height 100vh
+    overflow hidden
+    background transparent
+  }
+
+  .home-header {
+    position fixed
+    top 0
+    right 0
+    z-index $z-index-5
+    box-sizing border-box
+    width 100%
+    height var(--header-height)
+  }
 
   .page-main-content {
     display flex
