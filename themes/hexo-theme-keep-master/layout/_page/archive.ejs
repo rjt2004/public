@@ -19,7 +19,7 @@
                 </section>
                 <section class="blog-side-card border-box compact-archive">
                     <div class="blog-section-title"><i class="fa-solid fa-box-archive"></i><span><%= __('archive') %></span></div>
-                    <%- partial('_partial/archive-list', { archive_posts: page.posts }) %>
+                    <%- partial('_partial/archive-list.ejs', { archive_posts: page.posts }) %>
                 </section>
             </aside>
             <section class="blog-main border-box">

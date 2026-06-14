@@ -4076,10 +4076,12 @@ figure.highlight .shrink-line:hover::before {
     padding: 1.2rem !important;
   }
   .blog-container .blog-layout {
+    grid-template-columns: 1fr;
     gap: 1.2rem;
   }
   .blog-container .blog-side {
     display: flex;
+    flex-direction: column;
   }
   .blog-container .blog-side-card {
     padding: 1rem;
