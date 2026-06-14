@@ -1,5 +1,5 @@
 (function () {
-  const CACHE_KEY = 'tone-home-weather-v3';
+  const CACHE_KEY = 'tone-home-weather-v4';
   const CACHE_TTL = 30 * 60 * 1000;
   const LOCATION = { latitude: 31.2304, longitude: 121.4737, place: '\u4e0a\u6d77' };
   const WEATHER_LABELS = {
@@ -42,8 +42,12 @@
     canvas._toneSkycon = skycons;
   }
 
-  function fallbackState() {
-    return { weather: 'clear-day', temp: null, place: LOCATION.place };
+  function loadingState() {
+    return { loading: true, place: LOCATION.place };
+  }
+
+  function errorState() {
+    return { error: true, place: LOCATION.place };
   }
 
   function readCache() {
@@ -80,6 +84,12 @@
     document.querySelectorAll('[data-home-weather-status]').forEach(el => {
       const canvas = el.querySelector('canvas');
       const text = el.querySelector('span');
+      if (state.loading || state.error) {
+        if (canvas?._toneSkycon) canvas._toneSkycon.pause();
+        if (canvas) canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
+        text.textContent = (state.place || LOCATION.place) + ' \u00b7 ' + (state.error ? '\u5929\u6c14\u6682\u4e0d\u53ef\u7528' : '\u5929\u6c14\u52a0\u8f7d\u4e2d');
+        return;
+      }
       drawIcon(canvas, state.weather);
       const temp = state.temp === null ? '' : ' ' + state.temp + '\u00b0C';
       text.textContent = (state.place || LOCATION.place) + ' \u00b7 ' + (WEATHER_LABELS[state.weather] || '\u5929\u6c14') + temp;
@@ -87,18 +97,19 @@
   }
 
   function init() {
-    const cached = readCache();
-    if (cached) {
-      render(cached);
-      return;
-    }
-    render(fallbackState());
+    render(loadingState());
     fetchWeather()
       .then(state => { writeCache(state); render(state); })
-      .catch(() => {});
+      .catch(() => {
+        const cached = readCache();
+        if (cached) render(cached);
+        else render(errorState());
+      });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
   document.addEventListener('pjax:complete', init);
 })();
+
+
